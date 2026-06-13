@@ -58,7 +58,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: white; border: none; 
             padding: 10px 20px; 
             border-radius: 5px; 
-            width: 30%;
+            width: 20%;
+        }
+        footer{
+            color: gray;
+            font-size: 15px;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -81,36 +86,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Komentar</label>
-                            <textarea name="komentar" class="form-control" rows="3" placeholder="Tulis komentar..."></textarea>
+                            <textarea name="komentar" class="form-control" rows="3" placeholder="Tulis komentar atau kesanmu..."></textarea>
                         </div>
                         <button type="submit" class="btn-kirim">Kirim Komentar</button>
                     </form>
                 </div>
             </div>
 
-            <div class="card p-3">
-                <div class="card-body">
-                    <h4 class="mb-3">Komentar Tamu</h4>
-                    <?php
-                    $stmt = $conn->query("SELECT * FROM buku_tamu ORDER BY waktu DESC");
-                    $total_komentar = $stmt->rowCount();
-                    ?>
-                    <p class="text-muted">Total: <?= $total_komentar; ?> Komentar</p>
-                    <?php if ($total_komentar > 0): ?>
-                        <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-                            <div class="comment-box">
-                                <div class="comment-name"><?= htmlspecialchars($row['nama']); ?></div>
-                                <div class="comment-meta mb-2">Asal: <?= htmlspecialchars($row['asal']); ?> | <?= $row['waktu']; ?></div>
-                                <div>"<?= htmlspecialchars($row['komentar']); ?>"</div>
-                            </div>
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                        <div class="alert alert-secondary">Belum ada komentar</div>
-                    <?php endif; ?>
+<div class="card p-4">
+    <div class="card-body">
+        <?php
+        $stmt = $conn->query("SELECT * FROM buku_tamu ORDER BY waktu DESC");
+        $total_komentar = $stmt->rowCount();
+        ?>
+        <h4 class="mb-4">Komentar Tamu <span class="text-muted fs-6 fw-normal">(<?= $total_komentar; ?> komentar)</span></h4>
+        
+        <?php if ($total_komentar > 0): ?>
+            <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                <div class="card mb-3 p-3 border rounded-3 bg-white shadow-sm">
+                    
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <div class="comment-name fw-bold text-dark fs-5">
+                            <?= htmlspecialchars($row['nama']); ?>
+                        </div>
+                        <div class="comment-meta text-muted small text-end">
+                            <?= htmlspecialchars($row['asal']); ?> | <?= date('Y-m-d H:i:s', strtotime($row['waktu'])); ?>
+                        </div>
+                    </div>
+                    
+                    <div class="text-secondary">
+                        "<?= htmlspecialchars($row['komentar']); ?>"
+                    </div>
+                    
                 </div>
-            </div>
-        </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <div class="alert alert-secondary">Belum ada komentar</div>
+        <?php endif; ?>
+        
     </div>
+</div>
+<footer>2572047 - Kevin Wijaya</footer>
+</div>
+</div>
 </div>
 </body>
 </html>

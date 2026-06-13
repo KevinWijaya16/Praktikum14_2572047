@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "mydb_guest";
+$dbname = "db_webdasar";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
