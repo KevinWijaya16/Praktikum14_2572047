@@ -4,7 +4,6 @@ include_once 'koneksi.php';
 
 $pesan = "";
 
-// Proses Insert Data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nama = trim($_POST['nama']);
     $asal = trim($_POST['asal']);
