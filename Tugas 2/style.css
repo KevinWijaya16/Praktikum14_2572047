@@ -1,0 +1,28 @@
+body{
+    background-color: #f8f9fa;
+}
+
+.container{
+    margin-top: 70px;
+}
+
+.card{
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    height: 100%;
+}
+
+.card h2{
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.btn{
+    width: 100%;
+}
+
+.text-center{
+    margin-top: 15px;
+}
